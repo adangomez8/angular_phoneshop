@@ -1,0 +1,25 @@
+<table class="table">
+    <thead>
+        <tr>
+        <th class="col-12 clearance">En oferta</th>
+        </tr>
+        <tr>
+            <th ></th>
+            <th>Código</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Precio</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let phone of phones"  [ngClass]= "{'clearance': phone.clearance}">
+            <td><img [src]="phone.photo" [alt]="phone.code"></td>
+            <td>{{phone.code}}</td>
+            <td>{{phone.brand}}</td>
+            <td>{{phone.model}}</td>
+            <td>{{phone.price | currency}}</td>
+            <td> <span class="badge rounded-pill bg-warning text-dark" *ngIf= "phone.stock == 0">Sin Stock</span></td>
+        </tr>
+    </tbody>
+</table>
