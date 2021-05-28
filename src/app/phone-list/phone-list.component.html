@@ -1,25 +1,31 @@
-<table class="table">
+<table class="table text-center">
     <thead>
+
         <tr>
-        <th class="col-12 clearance">En oferta</th>
-        </tr>
-        <tr>
-            <th ></th>
+            <th></th>
             <th>Código</th>
             <th>Marca</th>
             <th>Modelo</th>
             <th>Precio</th>
             <th>Stock</th>
+            <th>Cantidad</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor = "let phone of phones"  [ngClass]= "{'clearance': phone.clearance}">
-            <td><img [src]="phone.photo" [alt]="phone.code"></td>
+        <tr *ngFor = "let phone of phones">
+            <td><img width="75" class="img-thumbnail" [src]="phone.photo" [alt]="phone.code"></td>
             <td>{{phone.code}}</td>
             <td>{{phone.brand}}</td>
             <td>{{phone.model}}</td>
             <td>{{phone.price | currency}}</td>
             <td> <span class="badge rounded-pill bg-warning text-dark" *ngIf= "phone.stock == 0">Sin Stock</span></td>
+            <td>
+
+                <div class="input-group mb-3">
+                    <button class="btn btn-outline-secondary  btn-outline-success" type="button" (click)="Downquantity(phone)">-</button>
+                    <input type="text" class="form-control" placeholder="" aria-label="Example text with two button addons">
+                    <button class="btn btn-outline-secondary  btn-outline-success" type="button" (click)="Upquantity(phone)">+</button>
+                  </div>
         </tr>
     </tbody>
 </table>

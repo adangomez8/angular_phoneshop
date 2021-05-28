@@ -5,5 +5,5 @@ export interface Phone {
     model: string;
     price: number;
     stock: number;
-    clearance: boolean;
+    quantity: number;
 }

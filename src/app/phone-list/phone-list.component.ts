@@ -16,7 +16,7 @@ phones: Phone []= [
     model: "8 Plus",
     price: 120000,
     stock: 9,
-    clearance: false,
+    quantity: 0,
   },
   {
     photo:  "assets/img/oneVision.jpg",
@@ -25,7 +25,7 @@ phones: Phone []= [
     model: "One Vision",
     price: 45000,
     stock: 32,
-    clearance: true,
+    quantity: 0,
   },
   {
     photo:  "assets/img/mi11Ultra.jpg",
@@ -34,14 +34,23 @@ phones: Phone []= [
     model: "Mi 11 Ultra",
     price: 65000,
     stock: 0,
-    clearance: false,
+    quantity: 0,
   },
 ]
 
 
   constructor() { }
- 
+
   ngOnInit(): void {
   }
 
+  Upquantity(phone: Phone): void {
+    if (phone.quantity < phone.stock)
+    phone.quantity++;
+  }
+
+  Downquantity(phone: Phone): void {
+    if(phone.quantity>0)
+    phone.quantity--;
+  }
 }
