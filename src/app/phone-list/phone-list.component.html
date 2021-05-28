@@ -20,12 +20,8 @@
             <td>{{phone.price | currency}}</td>
             <td> <span class="badge rounded-pill bg-warning text-dark" *ngIf= "phone.stock == 0">Sin Stock</span></td>
             <td>
-
-                <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary  btn-outline-success" type="button" (click)="Downquantity(phone)">-</button>
-                    <input type="text" class="form-control" placeholder="" aria-label="Example text with two button addons">
-                    <button class="btn btn-outline-secondary  btn-outline-success" type="button" (click)="Upquantity(phone)">+</button>
-                  </div>
+              <app-input-integer [phone]="phone" *ngIf="phone.stock"></app-input-integer>
+            </td>
         </tr>
     </tbody>
 </table>

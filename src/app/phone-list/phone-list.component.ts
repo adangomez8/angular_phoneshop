@@ -44,13 +44,4 @@ phones: Phone []= [
   ngOnInit(): void {
   }
 
-  Upquantity(phone: Phone): void {
-    if (phone.quantity < phone.stock)
-    phone.quantity++;
-  }
-
-  Downquantity(phone: Phone): void {
-    if(phone.quantity>0)
-    phone.quantity--;
-  }
 }
