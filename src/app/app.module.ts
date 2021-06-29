@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PhoneListComponent } from './phone-list/phone-list.component';
+
+import {HttpClientModule} from '@angular/common/http';
+
 import { FormsModule } from '@angular/forms';
 import { PhoneshopContactComponent } from './phoneshop-contact/phoneshop-contact.component';
 import { PhoneshopPhonesComponent } from './phoneshop-phones/phoneshop-phones.component';
@@ -23,6 +26,7 @@ import { InputIntegerComponent } from './input-integer/input-integer.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

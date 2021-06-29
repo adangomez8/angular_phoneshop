@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PhoneCartService } from '../phone-cart.service';
+import { PhoneDataService } from '../phone-data.service';
 import { Phone } from './Phone'
 
 @Component({
@@ -8,40 +10,22 @@ import { Phone } from './Phone'
 })
 export class PhoneListComponent implements OnInit {
 
-phones: Phone []= [
-  {
-    photo:  "assets/img/iPhone8Plus.jpg",
-    code: 10001,
-    brand: "iPhone",
-    model: "8 Plus",
-    price: 120000,
-    stock: 9,
-    quantity: 0,
-  },
-  {
-    photo:  "assets/img/oneVision.jpg",
-    code: 10002,
-    brand: "Motorola",
-    model: "One Vision",
-    price: 45000,
-    stock: 32,
-    quantity: 0,
-  },
-  {
-    photo:  "assets/img/mi11Ultra.jpg",
-    code: 10003,
-    brand: "Xiaomi",
-    model: "Mi 11 Ultra",
-    price: 65000,
-    stock: 0,
-    quantity: 0,
-  },
-]
+phones: Phone []= [];
 
-
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private cart: PhoneCartService,
+    private phonesDataService: PhoneDataService) {
   }
 
+  ngOnInit(): void {
+    this.phonesDataService.getAll()
+    .subscribe(phones =>this.phones = phones);
+  }
+
+
+  addToCart(phone: Phone): void{
+    this.cart.addToCart(phone);
+    phone.stock -= phone.quantity;
+    phone.quantity = 0;
+  }
 }

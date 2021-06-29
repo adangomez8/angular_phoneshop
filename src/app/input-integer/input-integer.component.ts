@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { Phone } from '../phone-list/Phone';
 
 @Component({
@@ -11,23 +12,32 @@ export class InputIntegerComponent implements OnInit {
   constructor() {}
 
   @Input()
-  phone: Phone;
+  quantity: number;
+
+  @Input()
+  max: number;
+
+  @Output()
+  quantityChange: EventEmitter<number> = new EventEmitter<number>();
 
   ngOnInit(): void {
   }
 
 
-  Upquantity(phone: Phone): void {
-    if (phone.quantity < phone.stock)
-    phone.quantity++;
+  Upquantity(): void {
+    if (this.quantity < this.max)
+    this.quantity++;
+    this.quantityChange.emit(this.quantity);
   }
 
-  Downquantity(phone: Phone): void {
-    if(phone.quantity>0)
-    phone.quantity--;
+  Downquantity(): void {
+    if(this.quantity>0)
+    this.quantity--;
+    this.quantityChange.emit(this.quantity);
   }
 
-  changeQuantity(event: { key: any; }, phone: Phone): void {
+  changeQuantity(event: { key: any; }): void {
     console.log(event.key);
+    this.quantityChange.emit(this.quantity);
   }
 }

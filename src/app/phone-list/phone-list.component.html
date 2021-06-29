@@ -3,24 +3,28 @@
 
         <tr>
             <th></th>
-            <th>Código</th>
             <th>Marca</th>
             <th>Modelo</th>
             <th>Precio</th>
             <th>Stock</th>
             <th>Cantidad</th>
+            <th>🛒</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor = "let phone of phones">
             <td><img width="75" class="img-thumbnail" [src]="phone.photo" [alt]="phone.code"></td>
-            <td>{{phone.code}}</td>
             <td>{{phone.brand}}</td>
             <td>{{phone.model}}</td>
             <td>{{phone.price | currency}}</td>
-            <td> <span class="badge rounded-pill bg-warning text-dark" *ngIf= "phone.stock == 0">Sin Stock</span></td>
+            <td> <span class="badge rounded-pill bg-warning text-dark" *ngIf= "phone.stock == 0">Sin Stock</span>
+                 <span *ngIf= "phone.stock > 0">✅</span>
+            </td>
             <td>
-              <app-input-integer [phone]="phone" *ngIf="phone.stock"></app-input-integer>
+              <app-input-integer [(quantity)]="phone.quantity" [max]="phone.stock" *ngIf="phone.stock"></app-input-integer>
+            </td>
+            <td>
+              <button class="btn btn-success" (click)="addToCart(phone)" *ngIf= "phone.quantity > 0">Agregar</button>
             </td>
         </tr>
     </tbody>
